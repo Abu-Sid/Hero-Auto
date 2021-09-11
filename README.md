@@ -1,37 +1,30 @@
-# Hero Auto Care
+# <h2 align="center">Hero Auto Care</h2>
 
 ---
 
 ### A Full Stack Application about Auto Care & Service Provider
 
+-![Home Page](docs/homepage.png)
+
 - [Live Website](https://hero-auto-service.web.app/ "Click For View Live Site")
-- [Client Site Code](https://github.com/Porgramming-Hero-web-course/complete-website-client-Abu-Sid "Click For View Clint Site Code")
-- [Server Site Code](https://github.com/Porgramming-Hero-web-course/complete-website-server-Abu-Sid "Click For View Server Site Code")
+- [Client Site Code](https://github.com/Abu-Sid/Hero-Auto "Click For View Clint Site Code")
+- [Server Site Code](https://github.com/Abu-Sid/hero-auto-care-server "Click For View Server Site Code")
 
 ---
 
-## Description
+## Features
 
-A full-stack web application about an Auto care & service provider. User can check which services we are providing. Then user can place an order with service details via stripe payment process. On the client page, the registered user also can see their order, give review which will also show in the UI. In the admin dashboard, the admin can see all orders placed by the clients, delete or edit their current status. Admin can add a new service & also create another Admin through email of this site.
-
----
-
-## Functionality
-
-- Fully Responsive of Homepage.
-- Using React Router for render multiple pages
-- Using user and admin authentication with Firebase
-- Particular section for normal user and the admin
-- User can purchase to his/her selected service with test stripe payment system
-- User can review about services and it also render in UI
-- User can check his/her order and status
-- Admin can update users category status
-- Admin can add another admin
-- Admin can add new services
-- Admin can delete services
-- Admin can add update order status
-- Deploy client site on Firebase
-- Deploy server side on Heroku
+- A full-stack web application about an Auto care & service provider.
+- A single page web application design by sass, and material UI.
+- A User can explore the web app with services, location and contact information.
+- Hassle-free Google Login/Registration.
+- Integration with Stripe payment gateway.
+- Implemented Role-based authentication (Admin and User)
+- User can buy any service and leave a review if he/she is satisfied.
+- Admin can Add/Delete a service and can also monitor/update a service status.
+- Admin can add new admin using email.
+- Fully Responsive.
+- Image/ file upload with imageBB.
 
 ---
 
@@ -54,3 +47,5 @@ A full-stack web application about an Auto care & service provider. User can che
 - Heroku
 
 ---
+
+:heart: Happy Coding :clap: 🚀
