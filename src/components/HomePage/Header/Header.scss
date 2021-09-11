@@ -3,57 +3,278 @@ $textColor: #fff;
 $normalText: #16322e;
 $lightBackground: #f1f6f4;
 $mute: #6d6f74;
+//@at-root
+$purple: #717fe0; /*Accent Color*/
+$dark-gray: #333333; /*Primary Color*/
+$light-gray: #888888; /*Secondary Color*/
+$white: #fff; /*Background Color*/
+$error: #ff3d3d;
 
-%button-shared {
-  background-color: $buttonColor;
+$p-ff: "Poppins", sans-serif; /*Primary font family*/
+$s-ff: "Playfair Display", serif; /*Secondary font family*/
+
+$fs-xs: 0.92rem; /* font size extra small */
+$fs-s: 1rem; /* font size small */
+$fs-m: 1.5rem; /* font size medium */
+$fs-l: 2rem; /* font size large */
+$fs-xl: 3rem; /* font size extra-large */
+$fs-xxl: 3.5rem; /* font size extra-large */
+
+.btn-primary {
+  background-color: $purple;
   color: $textColor;
   border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
 }
-
-.background {
-  background-image: url("../../../Image/banner.jpeg");
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  //   background-attachment: fixed;
-  height: 400px;
-  width: 100%;
+.landing {
+  overflow-x: hidden;
+  background-image: url(../../../Image/header-bg.png);
   background-size: cover;
-}
-.bg-color {
-  background-color: #00000091;
-  height: 100%;
-}
-.btn {
-  @extend %button-shared;
-}
-h1 {
-  color: $normalText;
-}
-.price {
-  color: $buttonColor;
-}
-.shared-color {
-  color: $normalText;
-}
-.shared-bg {
-  background-color: $lightBackground;
-}
-.footer-bg {
-  background-color: $buttonColor;
-}
-.lightTextColor {
-  color: $buttonColor;
-}
-.text {
-  color: $mute;
-}
-.feature {
-  margin-left: 5rem;
-  padding-top: 4rem;
-}
-@media only screen and (max-width: 600px) {
-  .feature {
-    margin-left: 0rem;
-    padding-top: 0rem;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5rem;
+  h3 {
+    font-size: $fs-m;
+    font-weight: 400;
+    color: $dark-gray;
+    text-transform: capitalize;
+  }
+  h2 {
+    font-size: $fs-xl;
+    color: $dark-gray;
+    font-family: $s-ff;
+    text-transform: uppercase;
+    margin: 1rem 0 2rem 0;
   }
 }
+.header-container {
+  overflow: hidden;
+}
+
+.header-row {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.header-row img {
+  width: 80%;
+}
+
+.svg-background {
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.path1,
+.path2 {
+  transition: 0.5s;
+}
+
+.dark-mode .svg-background .path1 {
+  fill: #0a0a0a;
+}
+
+.dark-mode .svg-background .path2 {
+  fill: #2d294d;
+}
+
+.bottom-side {
+  text-align: center;
+}
+
+.bg-image {
+  left: 18.386%;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 100vh;
+  z-index: -10;
+}
+
+.header-links {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-icon {
+  font-size: calc(2.1rem + 0.3vw);
+}
+
+.header-links:hover::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.header-links:hover {
+  transform: translateY(-8px);
+}
+
+.header-links::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  z-index: -10;
+  border-radius: 50%;
+  transform: scale(0);
+  width: 3.2rem;
+  height: 3.2rem;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.link-1 {
+  color: #0084ff;
+  transition: 0.3s;
+}
+
+.link-2 {
+  color: #54bbff;
+  transition: 0.3s;
+}
+
+.link-3 {
+  color: #d82b34;
+  transition: 0.3s;
+}
+
+.link-1:hover,
+.link-2:hover,
+.link-3:hover {
+  color: #ffffff;
+}
+
+.link-1::after {
+  background-color: #0084ff;
+}
+
+.link-2::after {
+  background-color: #54bbff;
+}
+
+.link-3::after {
+  background-color: #d82b34;
+}
+
+@media (max-width: 1600px) {
+  .bg-image {
+    left: 13%;
+  }
+}
+
+@media (max-width: 1500px) {
+  .bg-image {
+    left: 10%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .bg-image {
+    left: 5%;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .bg-image {
+    left: 0;
+    width: 1200px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .bg-image {
+    top: 0;
+    left: 70%;
+    transform: translateX(-50%);
+  }
+  .bottom-side {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .header-row img {
+    width: 95%;
+  }
+}
+@media (max-width: 767.98px) {
+  .svg-background {
+    min-height: 50vh;
+    width: 100%;
+  }
+  .header-row {
+    min-height: unset;
+  }
+  .bg-image {
+    left: 60%;
+  }
+}
+
+@media (max-width: 500px) {
+  .landing {
+    padding: 1rem;
+  }
+  .bg-image {
+    left: 40%;
+  }
+}
+
+// .background {
+//   background-image: url("../../../Image/banner.jpeg");
+//   background-repeat: no-repeat;
+//   background-position: bottom center;
+//   //   background-attachment: fixed;
+//   height: 400px;
+//   width: 100%;
+//   background-size: cover;
+// }
+// .bg-color {
+//   background-color: #00000091;
+//   height: 100%;
+// }
+// .btn {
+//   @extend %button-shared;
+// }
+// h1 {
+//   color: $normalText;
+// }
+// .price {
+//   color: $buttonColor;
+// }
+// .shared-color {
+//   color: $normalText;
+// }
+// .shared-bg {
+//   background-color: $lightBackground;
+// }
+// .footer-bg {
+//   background-color: $buttonColor;
+// }
+// .lightTextColor {
+//   color: $buttonColor;
+// }
+// .text {
+//   color: $mute;
+// }
+// .feature {
+//   margin-left: 5rem;
+//   padding-top: 4rem;
+// }
+// @media only screen and (max-width: 600px) {
+//   .feature {
+//     margin-left: 0rem;
+//     padding-top: 0rem;
+//   }
+// }

@@ -1,11 +1,15 @@
+.provider-container > img {
+  height: 35rem;
+}
 .provider {
   margin-top: 20%;
   margin-left: 5rem;
 }
 @media only screen and (max-width: 600px) {
   .provider {
-    margin-top: 0%;
-    margin-left: 0rem;
-    font-size: 0px;
+    margin-top: 63%;
+    margin-left: 1rem;
+    font-size: 3px;
+    padding: 0rem;
   }
 }

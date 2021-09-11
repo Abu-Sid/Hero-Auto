@@ -1,6 +1,6 @@
 import React from 'react';
 import whyHero from '../../../Image/why-hero.jpeg';
-
+import './Feature.scss';
 
 const services = [
     { 
@@ -38,17 +38,24 @@ const services = [
 
 const Feature = () => {
     return (
-        <div className=" pt-5">
+        <div className="pt-5 features_container" id="features">
             <div className="text-center">
                 <img style={{width:'60%'}}src={whyHero} alt=""/>
             </div>
             <div className="d-flex flex-wrap justify-content-center mt-3">
                 {
                     services.map(service =>
-                        <div className="card m-2 " style={{ width: '20rem', border: 'none' }}>
-                            <div className="card-body text-center">
-                                <h3 className="card-title shared-color">{service.title}</h3>
-                                <p className="card-text shared-color text">{service.detail}</p>
+                        <div data-aos="flip-up"
+                         className="card m-2 feature_card" style={{ width: '20rem', border: 'none' }}>
+                            <div data-aos="zoom-in-left"
+                                    data-aos-offset="100"
+                                    data-aos-easing="ease-in-sine"  className="card-body text-center">
+                                <h3 
+                                    className="card-title shared-color">
+                                    {service.title}</h3>
+                                <p 
+                                    className="card-text shared-color text">
+                                    {service.detail}</p>
                             </div>
                         </div>)
                 }

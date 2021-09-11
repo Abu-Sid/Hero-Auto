@@ -1,83 +1,83 @@
-.image {
+.service,
+.service-img {
+  transition: transform 0.8s;
+}
+.service-container {
+  background-image: url("../../../Image/header-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.service {
+  border: 1px solid lightgrey;
   position: relative;
-  height: 200px;
-  border-radius: 12px;
   overflow: hidden;
 }
-.heading {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  padding: 4px 0;
+
+.dark-mode .service {
+  border-color: #555555;
 }
-.heading p {
-  font-weight: 700;
-  font-size: 1.1rem;
+
+.service-img:hover {
+  transform: rotate(360deg);
 }
-.animation {
-  width: 20rem;
+
+.service:hover {
+  box-shadow: 10px 10px 30px lightgray;
+  transform: scale(1.04);
+  cursor: pointer;
   border: none;
 }
-.animation :hover {
-  animation: animationFrames linear 1s;
-  animation-iteration-count: 1;
-  transform-origin: 50% 50%;
-  -webkit-animation: animationFrames linear 1s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: 50% 50%;
+
+.dark-mode .service:hover {
+  box-shadow: 0px 0px 10px rgb(92, 92, 92);
 }
 
-@keyframes animationFrames {
-  0% {
-    transform: translate(0px, 0px) rotate(0deg);
-  }
-  15% {
-    transform: translate(-25px, 0px) rotate(-5deg);
-  }
-  30% {
-    transform: translate(20px, 0px) rotate(3deg);
-  }
-  45% {
-    transform: translate(-15px, 0px) rotate(-3deg);
-  }
-  60% {
-    transform: translate(10px, 0px) rotate(2deg);
-  }
-  75% {
-    transform: translate(-5px, 0px) rotate(-1deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(0deg);
+.dark-mode .list-group-item {
+  color: #f6f6f6;
+}
+
+.list-group-item {
+  background-color: unset;
+}
+
+.service:hover::after {
+  opacity: 1;
+  z-index: -10;
+  animation: service-animation 0.5s ease-in-out;
+}
+
+.maxWidth {
+  max-width: 93%;
+}
+
+.service::after {
+  position: absolute;
+  content: "";
+  background-color: #8592f2;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  opacity: 0;
+}
+
+.dark-mode .service::after {
+  background-color: #0f0101;
+}
+
+@media (max-width: 500px) {
+  .maxWidth {
+    max-width: 100%;
   }
 }
 
-@-webkit-keyframes animationFrames {
+@keyframes service-animation {
   0% {
-    -webkit-transform: translate(0px, 0px) rotate(0deg);
-  }
-  15% {
-    -webkit-transform: translate(-25px, 0px) rotate(-5deg);
-  }
-  30% {
-    -webkit-transform: translate(20px, 0px) rotate(3deg);
-  }
-  45% {
-    -webkit-transform: translate(-15px, 0px) rotate(-3deg);
-  }
-  60% {
-    -webkit-transform: translate(10px, 0px) rotate(2deg);
-  }
-  75% {
-    -webkit-transform: translate(-5px, 0px) rotate(-1deg);
+    bottom: 100%;
   }
   100% {
-    -webkit-transform: translate(0px, 0px) rotate(0deg);
-  }
-}
-@media only screen and (max-width: 600px) {
-  .animation {
-    width: 16rem;
-    border: none;
+    bottom: 0;
   }
 }

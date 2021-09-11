@@ -1,7 +1,6 @@
 import { Card, CardContent, CardMedia, Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from "../../../App";
-import Sidebar from '../../Admin/Sidebar/Sidebar';
 const useStyles = makeStyles((theme) => ({
     icon: {
       marginRight: theme.spacing(2),
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 const Order = () => {
-    const [loggedUser, setLoggedUser] = useContext(UserContext);
+    const [loggedUser] = useContext(UserContext);
     const [orders, setOrders] = useState([])
     console.log("orders",orders);
     useEffect(() => {
@@ -53,7 +52,6 @@ const Order = () => {
     return (
         <main>
         {/* Hero unit */}
-        <Sidebar/>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>

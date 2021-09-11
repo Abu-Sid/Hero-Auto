@@ -8,3 +8,8 @@
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
+@media (max-width: 900px) {
+  .MuiTableContainer-root {
+    width: 100% !important;
+  }
+}

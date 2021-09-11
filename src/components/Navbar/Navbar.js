@@ -1,207 +1,80 @@
-import {
-  AppBar,
-  Button,
-  Container,
-  IconButton,
-  makeStyles,
-  Menu,
-  MenuItem,
-  Toolbar
-} from "@material-ui/core";
-import { MoreVert } from "@material-ui/icons";
-import React, { useContext, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "../../App";
-import logo from '../../Image/logo.png';
-import './Navbar.css';
-  // eslint-disable-next-line
-  const useStyles = makeStyles((theme) => ({
-    grow: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    logo: {
-      width: "230px",
-    },
-    custombtn: {
-      background: "#3F90FC",
-      color: "#fff",
-      padding: "10px 36px",
-      margin: "0 12px",
-    },
-    sectionDesktop: {
-      display: "none",
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
-      },
-    },
-    sectionMobile: {
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        display: "none",
-      },
-    },
-  }));
-
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, NavLink, useHistory, useLocation } from 'react-router-dom';
+import { UserContext } from '../../App';
+import logo from '../../Image/hero_logo.png';
+import './Navbar.scss';
+import navbarData from "./navbarData";
 const Navbar = () => {
-    const [loggedUser, setLoggedUser] = useContext(UserContext);
-  const classes = useStyles();
-  const history = useHistory();
+
+    const [loggedUser,setLoggedUser] = useContext(UserContext);
+
+    const [navbarToggler, setNavbarToggler] = useState(false);
+
+    const [navbarBg, setNavbarBg] = useState(false);
+
+    const history = useHistory();
+
+    const location = useLocation();
+
+    const handleLink = () => {
+        window.scrollTo(0, 0);
+        setNavbarToggler(false);
+    }
+
+    const handleScroll = () => {
+        if (window.scrollY > 30) {
+            setNavbarBg(true);
+        }
+        else {
+            setNavbarBg(false);
+        }
+    }
+
   useEffect(() => {
-    fetch(`https://thawing-ravine-07119.herokuapp.com/admin?email=${loggedUser.email}`)
-        .then(res => res.json())
-        .then(data => {
-                if (data[0]){
-                const newUser = { ...loggedUser };
-                newUser.setUser = true;
-                setLoggedUser(newUser)
-                }
-            else {
-                const newUser = { ...loggedUser };
-                newUser.setUser = false;
-                setLoggedUser(newUser)
-            }
-        })
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
 }, [])
-  const handleClick=()=>{
-    console.log("abc",loggedUser.setUser);
-    loggedUser.setUser?history.push("/addProduct"):history.push("/order")
-  }
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <Button color="default" onClick={() => history.push("/")}>
-          Home
-        </Button>
-      </MenuItem>
-      <MenuItem>
-        <Button color="default" onClick={() => history.push("/")}>
-          Services
-        </Button>
-      </MenuItem>
-      <MenuItem>
-        <Button color="default">Contact Us</Button>
-      </MenuItem>
-      {loggedUser?.displayName ? (
-            <MenuItem>
-              <Button style={{ color: 'white' }} variant='text'>
-                {loggedUser.displayName}
-              </Button>
-              </MenuItem>
-              
-          ) :(
-      <MenuItem>
-        <Button color="default" className={classes.custombtn}onClick={() => history.push("/login")}>
-          Login
-        </Button>
-      </MenuItem>)}
-      <MenuItem>
-        <Button
-          color="default"
-          className={classes.custombtn}
-          style={{ background: "#434141" }}
-          onClick={handleClick}
-        >
-          Dashboard
-        </Button>
-      </MenuItem>
-    </Menu>
-  );
-    return (
-      <>
-        <div className={classes.grow}>
-          <AppBar position="static">
-            <Container>
-              <Toolbar>
-                <div className={classes.logo}>
-                  <Link to="/">
-                    <img style={{ width: "100%" }} src={logo} alt="logo" />
-                  </Link>
+const {displayName, photo} = loggedUser;
+console.log(displayName);
+return (
+    <nav className={`navbar navbar-expand-lg position-fixed w-100 ${navbarBg?'shadow navbar-bg':'navbar-transparent'}`}>
+        <div className="container">
+            <Link to="/" className="navbar-brand">
+                <img data-aos="fade-right" src={logo} alt="" />
+            </Link>
+            <div onClick={() => setNavbarToggler(!navbarToggler)} className="navbar-toggler" type="button">
+                <div className={navbarToggler ? 'toggler-icon toggler-active' : 'toggler-icon'} />
+            </div>
+            <div className="navbar-collapse position-relative">
+                <ul className={`navbar-nav ms-auto text-center d-flex align-items-center ${navbarToggler && 'mobile'}`}>
+                    {
+                        navbarData.map(({name, path}) => (
+                            <li key={path} className="nav-item mt-2 mt-lg-0 text-center me-lg-2 ms-xl-3">
+                                {
+                                    path.startsWith('/')
+                                    ?<NavLink exact={true} activeClassName={location.hash?'':'active'} to={path} className="nav-link home-nav-link" onClick={handleLink}>{name}</NavLink>
+                                    : <a href={path} className={location.hash===path?'nav-link home-nav-link active':'nav-link home-nav-link'} onClick={()=> setNavbarToggler(false)}>{name}</a>
+                                }
+                            </li>
+                        ))
+                    }
+                    <li className="nav-item ms-lg-1 ms-xl-3 text-center">
+                        {
+                            displayName ?
+                            photo ? <img onClick={()=> history.push('/dashboard')} className="mt-2 mt-lg-0 mb-3 mb-lg-0 user-logo" src={photo} alt=""/>
+                            :<>
+                            <h6 onClick={()=> history.push('/dashboard')} className={`mt-2 ${navbarBg?'mt-lg-1 text-primary':'mt-lg-0 name'} mb-3 mb-lg-1`}>{displayName}</h6>
+                            <button onClick={() => setLoggedUser({})} className={`btn ${navbarBg?"btn-outline-success":"btn-success"} mt-2 mt-lg-0 mb-3 mb-lg-0 px-4 px-lg-3 px-xl-4`}>Log Out</button>
+                            </>
+                            :<button onClick={()=> history.push('/login')} className={`btn ${navbarBg?"btn-outline-success":"btn-success"} mt-2 mt-lg-0 mb-3 mb-lg-0 px-4 px-lg-3 px-xl-4`}>Login</button>
+                        }
+                        </li>
+  
+                    </ul>
                 </div>
-                <div className={classes.grow} />
-                <div className={classes.sectionDesktop}>
-                  <Button color="default" onClick={() => history.push("/")}>
-                    Home
-                  </Button>
-                  <Button color="default">Services</Button>
-                  <Button color="default">Contact Us</Button>
-                  {loggedUser?.displayName ? (
-                    <>
-                      <Button
-                        color="default"
-                        className={classes.custombtn}
-                        onClick={() => history.push("/")}
-                      >
-                        {loggedUser.displayName}
-                      </Button> 
-
-                      <Button
-                        color="default"
-                        className={classes.custombtn}
-                        onClick={() => setLoggedUser({})}
-                        style={{ color: "white" }}
-                      >
-                        Sign Out
-                      </Button>
-                    </>
-                  ) : (
-                    <Button
-                      color="default"
-                      className={classes.custombtn}
-                      onClick={() => history.push("/login")}
-                    >
-                      Login
-                    </Button>
-                  )}
-                  <Button
-                    color="default"
-                    className={classes.custombtn}
-                    style={{ background: "#434141" }}
-                    onClick={handleClick}
-                  >
-                    Dashboard
-                  </Button>
-                </div>
-                <div className={classes.sectionMobile}>
-                  <IconButton
-                    aria-label="show more"
-                    aria-controls={mobileMenuId}
-                    aria-haspopup="true"
-                    onClick={handleMobileMenuOpen}
-                    color="inherit"
-                  >
-                    <MoreVert />
-                  </IconButton>
-                </div>
-              </Toolbar>
-            </Container>
-          </AppBar>
-          {renderMobileMenu}
-        </div>
-      </>
+            </div>
+        </nav>
     );
 };
 

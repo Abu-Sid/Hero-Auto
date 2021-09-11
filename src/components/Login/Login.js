@@ -15,6 +15,7 @@ if (firebase.apps.length === 0) {
 
 const Login = () => {
     const [loggedUser, setLoggedUser] = useContext(UserContext);
+    console.log(loggedUser);
   let history = useHistory();
   let location = useLocation();
 
@@ -42,9 +43,9 @@ const Login = () => {
   };
     return (
         <div>
-      <div style={{ textAlign: "center" }} className="">
+      <div style={{ textAlign: "center" }} className="login_image">
         <Link to="/">
-          <img style={{ width: "50%" }} src={Logo} alt="logo" />
+          <img  src={Logo} alt="logo" />
         </Link>
       </div>
       <div className="googlelogin">

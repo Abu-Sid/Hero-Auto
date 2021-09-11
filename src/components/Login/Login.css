@@ -3,3 +3,12 @@
   justify-content: center;
   margin-top: 100px;
 }
+.login_image > a > img {
+  margin-top: 5rem;
+  width: 70%;
+}
+@media (max-width: 500px) {
+  .login_image {
+    width: 100%;
+  }
+}

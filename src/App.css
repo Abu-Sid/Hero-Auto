@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+.primary-btn {
+  background-color: #6f00ff;
+  color: #ffffff;
+  transition: 0.5s !important;
+}
+
+.primary-btn:hover {
+  background-color: #cacaca;
+  color: #6f00ff;
+}

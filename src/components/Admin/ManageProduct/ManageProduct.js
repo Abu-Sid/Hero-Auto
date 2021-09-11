@@ -9,7 +9,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Sidebar/Sidebar";
 import "./ManagerProduct.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,8 +35,6 @@ const ManageProduct = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
-           
             const newData=rows.filter(event=>event._id!==id)
             setRows(newData)
             });
@@ -54,7 +51,6 @@ const ManageProduct = () => {
 
     return (
         <>
-        <Sidebar/>
         <TableContainer align="center" component={Paper}>
             <Typography align="center" variant="h3" gutterBottom>
                  Manage Your Services : {rows.length}

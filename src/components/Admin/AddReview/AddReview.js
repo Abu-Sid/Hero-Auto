@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { UserContext } from '../../../App';
-import Sidebar from '../Sidebar/Sidebar';
 import "./AddReview.css";
+
 
 
 const AddReview = () => {
   const { register, handleSubmit,reset } = useForm();
-  const [loggedUser, setLoggedUser] = useContext(UserContext);
+  const [loggedUser] = useContext(UserContext);
   console.log(loggedUser);
   const onSubmit = data => {
     console.log(data);
@@ -34,7 +34,6 @@ const AddReview = () => {
   
   return (
     <>
-    <Sidebar/>
     <div className="admin-container">
       
       <form onSubmit={handleSubmit(onSubmit)}>

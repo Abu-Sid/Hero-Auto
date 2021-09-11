@@ -1,30 +1,29 @@
-import { createContext, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { createContext, Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import AddReview from "./components/Admin/AddReview/AddReview";
-import AddService from "./components/Admin/AddService/AddService";
-import AllOrder from "./components/Admin/AllOrder/AllOrder";
-import MakeAdmin from "./components/Admin/MakeAdmin/MakeAdmin";
-import ManageProduct from "./components/Admin/ManageProduct/ManageProduct";
 import Checkout from "./components/Customer/Checkout/Checkout";
-import Order from "./components/Customer/Order/Order";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Home from "./components/HomePage/Home/Home";
 import Login from "./components/Login/Login";
-import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-
+import Spinner from "./components/Spinner/Spinner";
 
 export const UserContext= createContext();
-export const ProductContext= createContext();
 
 function App() {
   const [loggedUser,setLoggedUser]=useState({})
   const [orderProduct,setOrderProduct]=useState({})
-console.log(orderProduct);
+useEffect(() => {
+  AOS.init({
+    duration : 2000
+  });
+  AOS.refresh();
+}, []);
   return (
-    <UserContext.Provider value={[loggedUser, setLoggedUser]}>
-    <ProductContext.Provider value={[orderProduct,setOrderProduct]}>
+    <UserContext.Provider value={[loggedUser, setLoggedUser,orderProduct,setOrderProduct]}>
       <Router>
-        <Navbar/>
+        <Suspense fallback={<Spinner />}></Suspense>
         <Switch>
           <Route exact path="/">
             <Home/>
@@ -32,33 +31,17 @@ console.log(orderProduct);
           <Route path="/login">
             <Login/>
           </Route>
-          <PrivateRoute path="/order">
-            <Order/>
-          </PrivateRoute>
-          <PrivateRoute path="/addProduct">
-            <AddService/>
-          </PrivateRoute>
-          <PrivateRoute path="/addReview">
-            <AddReview/>
-          </PrivateRoute>
-          <PrivateRoute path="/addAdmin">
-            <MakeAdmin/>
-          </PrivateRoute>
-          <PrivateRoute path="/manage">
-            <ManageProduct/>
-          </PrivateRoute>
-          <PrivateRoute path="/allOrders">
-            <AllOrder/>
+          <PrivateRoute path="/dashboard">
+            <Dashboard/>
           </PrivateRoute>
           <PrivateRoute path="/checkout/:id">
             <Checkout/>
           </PrivateRoute>
           <Route path="*">
-            <h1 style={{textAlign: "center"}}>page not found</h1>
+            <h1 style={{textAlign: "center", marginTop:'10rem'}}>page not found</h1>
           </Route>
         </Switch>
-      </Router>
-      </ProductContext.Provider>  
+      </Router> 
     </UserContext.Provider>
   );
 }

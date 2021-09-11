@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import React, { useEffect, useState } from "react";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import Sidebar from "../Sidebar/Sidebar";
+import swal from 'sweetalert';
 import "./AllOrder.css";
 const options = [
     { value: 'Pending', label: 'Pending' },
@@ -49,7 +49,9 @@ const AllOrder = () => {
         .then(data => {
             console.log("data",data);
             if (data) {
-                alert('Status updated successfully')
+              swal("Status Updated Successfully!", {
+                icon: "success",
+            });
             }
         })
          
@@ -66,7 +68,6 @@ const AllOrder = () => {
 
     return (
         <>
-        <Sidebar/>
         <TableContainer align="center" component={Paper}>
             <Typography align="center" variant="h3" gutterBottom>
                  Manage Orders : {allOrders.length}

@@ -1,23 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { ProductContext } from '../../../App';
+import React, { useEffect, useState } from 'react';
 import uber from '../../../Image/uber.jpeg';
 import ServiceDetail from '../ServiceDetail/ServiceDetail';
+import '../ServiceDetail/ServiceDetail.css';
 const Services = () => {
-    const [orderProduct,setOrderProduct]=useContext(ProductContext)
-    console.log("serviceProduct",orderProduct);
-  const [serviceData, setServiceData] = useState();
+    const [serviceData, setServiceData] = useState();
   useEffect(() => {
     fetch("https://thawing-ravine-07119.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => {
         setServiceData(data);
-        setOrderProduct(data);
       });
-  }, [setOrderProduct]);
+  }, [setServiceData]);
     return (
-        <section className="services-container mt-5" style={{ background:"radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(98,98,176,1) 49%, rgba(141,169,203,1) 92%)"}}>
+        <section id="services" className="service-container mt-5">
             <div className="text-center">
-                <h1 className="text-white text-uppercase pt-3">Services at Your Fingertips</h1>
+                <h1 className=" text-uppercase p-5">Services at Your Fingertips</h1>
             </div>
             <div className="d-flex flex-wrap justify-content-center">
                 {serviceData?.length?<div className="w-100 row ">

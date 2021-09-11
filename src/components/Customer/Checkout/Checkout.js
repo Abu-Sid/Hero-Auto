@@ -1,15 +1,15 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { useParams } from 'react-router';
-import { ProductContext, UserContext } from '../../../App';
+import swal from 'sweetalert';
+import { UserContext } from '../../../App';
 import Payment from './Payment';
 
   
 const Checkout = () => {
     const {id}=useParams()
-    const [orderProduct]=useContext(ProductContext)
-    console.log('checkout',orderProduct);
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+    const [loggedInUser, orderProduct] = useContext(UserContext);
     const checkoutProduct= orderProduct?.find(product=>product._id===id)
     console.log(checkoutProduct);
     const {name,price}=checkoutProduct
@@ -27,7 +27,9 @@ const Checkout = () => {
           .then(res=>res.json())
           .then(data=>{ 
             if (data){
-              alert('Order Placed successfully, Thank you')
+                swal("Order Place Successfully!", {
+                    icon: "success",
+                });
               
             }
           })

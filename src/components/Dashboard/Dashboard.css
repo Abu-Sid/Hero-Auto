@@ -1,0 +1,75 @@
+.addAdmin,
+.feedback,
+.booking-list,
+.services-container {
+  background-color: rgb(245, 245, 245);
+  padding: 30px;
+  min-height: 88vh;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  transition: 0.5s;
+}
+
+.dark-mode .addAdmin,
+.dark-mode .feedback,
+.dark-mode .booking-list,
+.dark-mode .services-container {
+  background-color: #3b3b3b;
+}
+
+.action-icon {
+  cursor: pointer;
+}
+
+.selected-rating {
+  color: rgb(255, 175, 2);
+}
+.rating1:hover,
+.rating2:hover,
+.rating3:hover,
+.rating4:hover,
+.rating5:hover {
+  color: rgb(255, 175, 2);
+  font-size: 19px;
+}
+
+.all-services {
+  overflow: auto;
+}
+
+.services-container {
+  min-width: 450px;
+}
+
+.top-bar {
+  box-shadow: 5px 5px 20px lightgray;
+  background-color: #fff;
+  transition: 0.5s;
+}
+
+.dark-mode .top-bar {
+  background-color: #3b3b3b;
+  box-shadow: 3px 3px 10px rgb(16, 16, 16);
+}
+
+@media (max-width: 767.98px) {
+  .services-container h6,
+  .services-container select {
+    font-size: 15px;
+    font-weight: normal;
+  }
+  .addAdmin,
+  .feedback,
+  .booking-list,
+  .services-container {
+    padding: 15px;
+    min-height: 86vh;
+  }
+}
+
+@media (max-width: 500px) {
+  .services-container h6,
+  .services-container select {
+    font-size: 14px;
+  }
+}
