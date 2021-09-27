@@ -27,7 +27,7 @@ const Header = () => {
                       </a>
                   </div>
                   <a href="#services">
-                      <button data-aos="fade-down" data-aos-delay='2000' className='primary-btn'>Get Services</button>
+                      <button data-aos="fade-down" data-aos-delay='2000' className='primary-button'>Get Services</button>
                   </a>
               </div>
           </div>

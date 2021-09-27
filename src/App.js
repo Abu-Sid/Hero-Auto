@@ -1,17 +1,19 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { createContext, Suspense, useEffect, useState } from "react";
+import { createContext, lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Checkout from "./components/Customer/Checkout/Checkout";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Home from "./components/HomePage/Home/Home";
-import Login from "./components/Login/Login";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Spinner from "./components/Spinner/Spinner";
+const Checkout = lazy(()=> import ("./components/Customer/Checkout/Checkout"));
+const Dashboard = lazy(()=> import("./components/Dashboard/Dashboard"));
+const Home = lazy(()=> import("./components/HomePage/Home/Home"));
+const Login = lazy(()=> import("./components/Login/Login"));
+const PrivateRoute = lazy(()=> import("./components/PrivateRoute/PrivateRoute"));
+
 
 export const UserContext= createContext();
 
 function App() {
+  
   const [loggedUser,setLoggedUser]=useState({})
   const [orderProduct,setOrderProduct]=useState({})
 useEffect(() => {
@@ -20,10 +22,11 @@ useEffect(() => {
   });
   AOS.refresh();
 }, []);
+
   return (
     <UserContext.Provider value={[loggedUser, setLoggedUser,orderProduct,setOrderProduct]}>
       <Router>
-        <Suspense fallback={<Spinner />}></Suspense>
+        <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact path="/">
             <Home/>
@@ -41,6 +44,7 @@ useEffect(() => {
             <h1 style={{textAlign: "center", marginTop:'10rem'}}>page not found</h1>
           </Route>
         </Switch>
+        </Suspense>
       </Router> 
     </UserContext.Provider>
   );

@@ -4,7 +4,7 @@ $normalText: #16322e;
 $lightBackground: #f1f6f4;
 $mute: #6d6f74;
 //@at-root
-$purple: #717fe0; /*Accent Color*/
+$purple: #2135ba; /*Accent Color*/
 $dark-gray: #333333; /*Primary Color*/
 $light-gray: #888888; /*Secondary Color*/
 $white: #fff; /*Background Color*/
@@ -20,12 +20,15 @@ $fs-l: 2rem; /* font size large */
 $fs-xl: 3rem; /* font size extra-large */
 $fs-xxl: 3.5rem; /* font size extra-large */
 
-.btn-primary {
+.primary-button {
   background-color: $purple;
   color: $textColor;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 2rem;
+}
+.primary-button:hover {
+  background-color: #1c2a88;
 }
 .landing {
   overflow-x: hidden;
@@ -230,51 +233,3 @@ $fs-xxl: 3.5rem; /* font size extra-large */
     left: 40%;
   }
 }
-
-// .background {
-//   background-image: url("../../../Image/banner.jpeg");
-//   background-repeat: no-repeat;
-//   background-position: bottom center;
-//   //   background-attachment: fixed;
-//   height: 400px;
-//   width: 100%;
-//   background-size: cover;
-// }
-// .bg-color {
-//   background-color: #00000091;
-//   height: 100%;
-// }
-// .btn {
-//   @extend %button-shared;
-// }
-// h1 {
-//   color: $normalText;
-// }
-// .price {
-//   color: $buttonColor;
-// }
-// .shared-color {
-//   color: $normalText;
-// }
-// .shared-bg {
-//   background-color: $lightBackground;
-// }
-// .footer-bg {
-//   background-color: $buttonColor;
-// }
-// .lightTextColor {
-//   color: $buttonColor;
-// }
-// .text {
-//   color: $mute;
-// }
-// .feature {
-//   margin-left: 5rem;
-//   padding-top: 4rem;
-// }
-// @media only screen and (max-width: 600px) {
-//   .feature {
-//     margin-left: 0rem;
-//     padding-top: 0rem;
-//   }
-// }
